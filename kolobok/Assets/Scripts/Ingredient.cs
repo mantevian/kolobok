@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface Ingredient
-{
-    
+public enum Ingredient {
+	EGG,
+	BUTTER,
+	FLOUR,
+	SOURCREAM
 }
