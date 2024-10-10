@@ -15,4 +15,34 @@ public class Bowl : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter(Collider collider) {
+        var game = transform.root.GetComponent<Game>();
+
+        var egg = collider.gameObject.GetComponent<Egg>();
+        if (egg != null)
+        {
+            game.PutIngredient(Ingredient.EGG);
+        }
+
+        var butter = collider.gameObject.GetComponent<Butter>();
+        if (butter != null)
+        {
+            game.PutIngredient(Ingredient.BUTTER);
+        }
+
+        var flour = collider.gameObject.GetComponent<Flour>();
+        if (flour != null)
+        {
+            game.PutIngredient(Ingredient.FLOUR);
+        }
+
+        var sourCream = collider.gameObject.GetComponent<SourCream>();
+        if (sourCream != null)
+        {
+            game.PutIngredient(Ingredient.SOURCREAM);
+        }
+
+        Destroy(collider.gameObject);
+    }
 }
