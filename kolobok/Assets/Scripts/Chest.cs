@@ -21,9 +21,11 @@ public class Chest : MonoBehaviour
 
     void Open()
     {
-        foreach (var item in defaultIngredients) {
-            for (int i = 0; i < item.Value; i++) {
-                var obj = Instantiate(transform.root.gameObject.GetComponent<Game>().ingredients[item.Key]);
+        foreach (var item in defaultIngredients)
+        {
+            for (int i = 0; i < item.Value; i++)
+            {
+                var obj = Instantiate(transform.root.gameObject.GetComponent<Game>().ingredientPrefabs[item.Key]);
                 obj.transform.parent = transform;
             }
         }
@@ -31,7 +33,8 @@ public class Chest : MonoBehaviour
 
     void Close()
     {
-        for (int i = 0; i < transform.childCount; i++) {
+        for (int i = 0; i < transform.childCount; i++)
+        {
             Destroy(transform.GetChild(i).gameObject);
         }
     }
