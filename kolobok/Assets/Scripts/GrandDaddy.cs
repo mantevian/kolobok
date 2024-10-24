@@ -36,24 +36,13 @@ public class GrandDaddy : MonoBehaviour
 
 	public void Eat(Dictionary<Ingredient, int> ingredients)
 	{
-		int difference = 0;
-		int sum = 0;
-
 		foreach (var item in perfectIngredients)
 		{
-			difference += Math.Abs(perfectIngredients[item.Key] - ingredients[item.Key]);
-			sum += perfectIngredients[item.Key];
-		}
-
-		double satisfaction = 1.0d - difference / sum;
-
-		if (satisfaction > 0.9d)
-		{
-			wellFed = true;
-		}
-		else
-		{
-			health--;
+			if (perfectIngredients[item.Key] != ingredients[item.Key])
+			{
+				health--;
+				return;
+			}
 		}
 	}
 }

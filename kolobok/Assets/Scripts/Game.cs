@@ -79,7 +79,7 @@ public class Game : MonoBehaviour
 
     }
 
-    public void PutIngredient(Ingredient ingredient) {
+    public void AddIngredient(Ingredient ingredient) {
         ingredientCounts[ingredient] += 1;
     }
 }

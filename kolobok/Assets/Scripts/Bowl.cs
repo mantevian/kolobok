@@ -22,25 +22,25 @@ public class Bowl : MonoBehaviour
         var egg = collider.gameObject.GetComponent<Egg>();
         if (egg != null)
         {
-            game.PutIngredient(Ingredient.EGG);
+            game.AddIngredient(Ingredient.EGG);
         }
 
         var butter = collider.gameObject.GetComponent<Butter>();
         if (butter != null)
         {
-            game.PutIngredient(Ingredient.BUTTER);
+            game.AddIngredient(Ingredient.BUTTER);
         }
 
         var flour = collider.gameObject.GetComponent<Flour>();
         if (flour != null)
         {
-            game.PutIngredient(Ingredient.FLOUR);
+            game.AddIngredient(Ingredient.FLOUR);
         }
 
         var sourCream = collider.gameObject.GetComponent<SourCream>();
         if (sourCream != null)
         {
-            game.PutIngredient(Ingredient.SOURCREAM);
+            game.AddIngredient(Ingredient.SOURCREAM);
         }
 
         Destroy(collider.gameObject);
