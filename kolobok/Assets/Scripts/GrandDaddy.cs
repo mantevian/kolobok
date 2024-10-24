@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GrandDaddy : MonoBehaviour
 {
-	public Dictionary<Ingredient, int> perfectIngredients = new();
+	public Dictionary<IngredientType, int> perfectIngredients = new();
 
 	private int health = 5;
 
@@ -23,10 +23,10 @@ public class GrandDaddy : MonoBehaviour
 
 	public void Reset()
 	{
-		perfectIngredients[Ingredient.EGG] = UnityEngine.Random.Range(2, 5);
-		perfectIngredients[Ingredient.BUTTER] = UnityEngine.Random.Range(2, 5);
-		perfectIngredients[Ingredient.FLOUR] = UnityEngine.Random.Range(2, 5);
-		perfectIngredients[Ingredient.SOURCREAM] = UnityEngine.Random.Range(2, 5);
+		perfectIngredients[IngredientType.EGG] = UnityEngine.Random.Range(2, 5);
+		perfectIngredients[IngredientType.BUTTER] = UnityEngine.Random.Range(2, 5);
+		perfectIngredients[IngredientType.FLOUR] = UnityEngine.Random.Range(2, 5);
+		perfectIngredients[IngredientType.SOURCREAM] = UnityEngine.Random.Range(2, 5);
 	}
 
 	public int GetHealth()
@@ -34,7 +34,7 @@ public class GrandDaddy : MonoBehaviour
 		return health;
 	}
 
-	public void Eat(Dictionary<Ingredient, int> ingredients)
+	public void Eat(Dictionary<IngredientType, int> ingredients)
 	{
 		foreach (var item in perfectIngredients)
 		{

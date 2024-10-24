@@ -22,21 +22,21 @@ public class Game : MonoBehaviour
     [SerializeField]
     public GrandDaddy grandDaddy;
 
-    public Dictionary<Ingredient, GameObject> ingredientPrefabs = new();
+    public Dictionary<IngredientType, GameObject> ingredientPrefabs = new();
 
-    public Dictionary<Ingredient, int> ingredientCounts = new();
+    public Dictionary<IngredientType, int> ingredientCounts = new();
 
     void Start()
     {
-        ingredientPrefabs[Ingredient.EGG] = eggPrefab;
-        ingredientPrefabs[Ingredient.BUTTER] = butterPrefab;
-        ingredientPrefabs[Ingredient.FLOUR] = flourPrefab;
-        ingredientPrefabs[Ingredient.SOURCREAM] = sourCreamPrefab;
+        ingredientPrefabs[IngredientType.EGG] = eggPrefab;
+        ingredientPrefabs[IngredientType.BUTTER] = butterPrefab;
+        ingredientPrefabs[IngredientType.FLOUR] = flourPrefab;
+        ingredientPrefabs[IngredientType.SOURCREAM] = sourCreamPrefab;
 
-        ingredientCounts[Ingredient.EGG] = 0;
-        ingredientCounts[Ingredient.BUTTER] = 0;
-        ingredientCounts[Ingredient.FLOUR] = 0;
-        ingredientCounts[Ingredient.SOURCREAM] = 0;
+        ingredientCounts[IngredientType.EGG] = 0;
+        ingredientCounts[IngredientType.BUTTER] = 0;
+        ingredientCounts[IngredientType.FLOUR] = 0;
+        ingredientCounts[IngredientType.SOURCREAM] = 0;
     }
 
     void Update()
@@ -79,7 +79,7 @@ public class Game : MonoBehaviour
 
     }
 
-    public void AddIngredient(Ingredient ingredient) {
-        ingredientCounts[ingredient] += 1;
+    public void AddIngredient(IngredientType ingredientType) {
+        ingredientCounts[ingredientType] += 1;
     }
 }
