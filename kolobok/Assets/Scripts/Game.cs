@@ -19,6 +19,11 @@ public class Game : MonoBehaviour
     public Dictionary<Ingredient, GameObject> ingredientPrefabs = new();
 
     public Dictionary<Ingredient, int> ingredientCounts = new();
+
+    public double fire = 0.0d;
+
+    public double ready = 0.0d;
+
     
 
     void Start()
