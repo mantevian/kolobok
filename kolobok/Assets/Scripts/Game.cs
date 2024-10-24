@@ -16,15 +16,15 @@ public class Game : MonoBehaviour
     [SerializeField]
     public GameObject sourCreamPrefab;
 
+    [SerializeField]
+    public Furnace furnace;
+
+    [SerializeField]
+    public GrandDaddy grandDaddy;
+
     public Dictionary<Ingredient, GameObject> ingredientPrefabs = new();
 
     public Dictionary<Ingredient, int> ingredientCounts = new();
-
-    public double fire = 0.0d;
-
-    public double ready = 0.0d;
-
-    
 
     void Start()
     {
@@ -40,6 +40,41 @@ public class Game : MonoBehaviour
     }
 
     void Update()
+    {
+
+    }
+
+    void FixedUpdate()
+    {
+        // успешно приготовили
+        if (furnace.readiness >= 1.0d)
+        {
+            furnace.StopCooking();
+        }
+
+        // пережарили
+        if (furnace.criticalHeat >= 1.0d)
+        {
+            furnace.StopCooking();
+        }
+
+        if (grandDaddy.GetHealth() <= 0)
+        {
+            Lose();
+        }
+
+        if (grandDaddy.wellFed)
+        {
+            Win();
+        }
+    }
+
+    void Lose()
+    {
+
+    }
+
+    void Win()
     {
 
     }
