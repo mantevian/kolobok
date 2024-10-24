@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    Dictionary<Ingredient, int> defaultIngredients = new();
+    Dictionary<IngredientType, int> defaultIngredients = new();
 
     void Start()
     {
-        defaultIngredients.Add(Ingredient.EGG, 2);
-        defaultIngredients.Add(Ingredient.BUTTER, 4);
-        defaultIngredients.Add(Ingredient.FLOUR, 6);
-        defaultIngredients.Add(Ingredient.SOURCREAM, 10);
+        defaultIngredients.Add(IngredientType.EGG, 2);
+        defaultIngredients.Add(IngredientType.BUTTER, 4);
+        defaultIngredients.Add(IngredientType.FLOUR, 6);
+        defaultIngredients.Add(IngredientType.SOURCREAM, 10);
     }
 
     void Update()
