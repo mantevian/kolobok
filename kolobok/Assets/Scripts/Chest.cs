@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
+    int time = 0;
+
     Dictionary<IngredientType, int> defaultIngredients = new();
 
     void Start()
@@ -16,17 +18,29 @@ public class Chest : MonoBehaviour
 
     void Update()
     {
-        
+        time++;
+
+        if (time == 50) {
+            Open();
+        }
     }
 
     void Open()
     {
+        var collider = GetComponent<BoxCollider>();
+
         foreach (var item in defaultIngredients)
         {
             for (int i = 0; i < item.Value; i++)
             {
+                Debug.Log(i);
                 var obj = Instantiate(transform.root.gameObject.GetComponent<Game>().ingredientPrefabs[item.Key]);
                 obj.transform.parent = transform;
+                obj.transform.position = new Vector3(
+                    Random.Range(collider.center.x - collider.size.x * 0.3f, collider.center.x + collider.size.x * 0.3f),
+                    Random.Range(collider.center.y - collider.size.y * 0.3f, collider.center.y + collider.size.y * 0.3f),
+                    Random.Range(collider.center.z - collider.size.z * 0.3f, collider.center.z + collider.size.z * 0.3f)
+                ) + transform.position;
             }
         }
     }
