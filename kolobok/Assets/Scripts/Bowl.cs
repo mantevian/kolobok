@@ -23,8 +23,7 @@ public class Bowl : MonoBehaviour
         if (ingredient != null)
         {
             game.AddIngredient(ingredient.type);
+            Destroy(collider.gameObject);
         }
-
-        Destroy(collider.gameObject);
     }
 }
