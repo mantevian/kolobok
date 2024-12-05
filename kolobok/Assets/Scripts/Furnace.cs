@@ -25,7 +25,8 @@ public class Furnace : MonoBehaviour
 
     void Start()
     {
-        
+        // todo DELETE!!!!!!!!!!!!!!!!!!!!!!!
+        isCooking = true;
     }
 
     void FixedUpdate()
@@ -39,20 +40,28 @@ public class Furnace : MonoBehaviour
             // если сила больше 0.7, "критическая шкала" будет увеличиваться
             if (fireStrength > 0.7d)
             {
-                criticalHeat += 0.05d / 60d;
+                criticalHeat += 0.02d / 60d;
+            }
+            else
+            {
+                criticalHeat -= 0.01d / 60d;
             }
 
+            fireStrength = Math.Min(fireStrength, 1.0d);
             fireStrength = Math.Max(0.0d, fireStrength - cooldownPerSecond / 60d);
+
+            Debug.Log("fire " + fireStrength + ", readiness " + readiness + ", critical " + criticalHeat);
         }
     }
 
     public void AddWood()
     {
-        fireStrength += 0.25d;
+        fireStrength += 0.15d;
     }
 
     public void StartCooking()
     {
+        readiness = 0.0d;
         isCooking = true;
     }
 
