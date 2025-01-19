@@ -15,4 +15,18 @@ public class Ingredient : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter(Collider collider) {
+        var game = transform.root.GetComponent<Game>();
+        if (!(game.gameState == GameState.SEARCHING_INGREDIENTS || game.gameState == GameState.PUTTING_ON_SHOVEL)) return;
+
+        var bowlTrigger = collider.gameObject;
+        var bowl = bowlTrigger.transform.parent.gameObject.GetComponent<Bowl>(); // Триггер чашки её наследник
+        if (bowl == null) return;
+
+        game.AddIngredient(type);
+        game.gameState = GameState.PUTTING_ON_SHOVEL;
+        Destroy(gameObject);
+
+    }
 }

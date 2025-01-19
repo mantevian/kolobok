@@ -20,17 +20,8 @@ public class ShovelController : MonoBehaviour
     }
 
     public void putDough(){
-        gameObject.GetNamedChild("Dough").SetActive(true);
-    }
-
-    void OnTriggerEnter(Collider collider) {
-        var game = transform.root.GetComponent<Game>();
-        var bowl = collider.gameObject;
-
-        if (bowl.GetComponent<Bowl>() is null || !game.ingredientCounts.Any()) return;
-        if (bowl.transform.up.y > 0) return;
-
-        putDough();
+        transform.GetChild(0).gameObject.SetActive(true);
+        
     }
 
     

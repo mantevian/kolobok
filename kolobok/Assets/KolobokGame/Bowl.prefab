@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6668969973725673857}
   - component: {fileID: 2414083779604876190}
   - component: {fileID: 6107123415436305144}
+  - component: {fileID: 6279323903343809966}
   m_Layer: 0
   m_Name: Bowl
   m_TagString: Untagged
@@ -288,6 +289,18 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &6279323903343809966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406390103613859053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa49ceb042353c441aede900a4cf0a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &977372096110704835
 GameObject:
   m_ObjectHideFlags: 0

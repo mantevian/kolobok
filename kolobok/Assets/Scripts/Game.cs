@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -20,7 +21,10 @@ public class Game : MonoBehaviour
     public GameObject furnace;
 
     [SerializeField]
-    public GameObject grandDaddy;
+    public GameObject grandDaddy = null;
+    
+    [SerializeField]
+    public GameState gameState = GameState.SEARCHING_INGREDIENTS;
 
     public Dictionary<IngredientType, GameObject> ingredientPrefabs = new();
 
@@ -84,5 +88,6 @@ public class Game : MonoBehaviour
 
     public void AddIngredient(IngredientType ingredientType) {
         ingredientCounts[ingredientType] += 1;
+        Debug.Log("Game bowl ingredients" + string.Join(", ", ingredientCounts.Select(entry => $"{entry.Key}: {entry.Value}").ToArray()));
     }
 }
