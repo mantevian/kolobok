@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Bowl
+      name: BowlDough
     second: {fileID: 2100000, guid: 6425c20b3286473439d625f069b5c6fb, type: 2}
   materials:
     materialImportMode: 2
