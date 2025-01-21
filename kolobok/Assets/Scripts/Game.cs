@@ -50,19 +50,8 @@ public class Game : MonoBehaviour
 
     void FixedUpdate()
     {
-        var furn = furnace.GetComponent<Furnace>();
-        // успешно приготовили
-        if (furn.readiness >= 1.0d)
-        {
-            furn.StopCooking();
-        }
-
-        // пережарили
-        if (furn.criticalHeat >= 1.0d)
-        {
-            furn.StopCooking();
-        }
-
+        // TODO UNCOMMENT WHEN GRANDDADDY IS ADDED!!!
+        /*
         var dad = grandDaddy.GetComponent<GrandDaddy>();
 
         if (dad.GetHealth() <= 0)
@@ -74,6 +63,7 @@ public class Game : MonoBehaviour
         {
             Win();
         }
+        */
     }
 
     void Lose()

@@ -16,7 +16,7 @@ public class Chest : MonoBehaviour
         defaultIngredients.Add(IngredientType.SOURCREAM, 10);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         time++;
 

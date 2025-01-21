@@ -18,12 +18,9 @@ public class CircleLoader : MonoBehaviour
     [SerializeField]
     public CircleLoaderTrigger trigger;
 
-
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(trigger.entered.Count == 2 && loadingProgress < 1)
+        if (trigger.entered.Count == 2 && loadingProgress < 1)
             loadingProgress += Time.deltaTime/duration;
         else 
             loadingProgress = 0;
@@ -34,7 +31,8 @@ public class CircleLoader : MonoBehaviour
         loadingImage.fillAmount = loadingProgress;
     }
 
-    void Done(){
+    void Done()
+    {
         Debug.Log("Win!");
     }
 }

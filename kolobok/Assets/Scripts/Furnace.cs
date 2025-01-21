@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Furnace : MonoBehaviour
 {
@@ -11,6 +13,12 @@ public class Furnace : MonoBehaviour
 
     [SerializeField]
     public double cooldownPerSecond = 0.01d;
+
+    [SerializeField]
+    public GameObject fireStrengthDisplay;
+
+    [SerializeField]
+    public GameObject particlesObject;
 
     public double fireStrength = 0.0d;
 
@@ -22,11 +30,24 @@ public class Furnace : MonoBehaviour
 
     public bool isOpen = false;
 
-
     void Start()
     {
-        // todo DELETE!!!!!!!!!!!!!!!!!!!!!!!
+        // TODO THIS IS DEBUG REMOVE LATER
+        // vvv
         isCooking = true;
+        fireStrength = 0.5d;
+        // ^^^
+    }
+
+    void Update()
+    {
+        var particles = particlesObject.GetComponent<ParticleSystem>();
+        
+        var m = particles.main;
+
+        m.startColor = new Color(1.0f, 0.5f, 0.0f, (float)fireStrength);
+
+        fireStrengthDisplay.GetComponent<Slider>().value = (float)fireStrength;
     }
 
     void FixedUpdate()
@@ -51,6 +72,18 @@ public class Furnace : MonoBehaviour
             fireStrength = Math.Max(0.0d, fireStrength - cooldownPerSecond / 60d);
 
             Debug.Log("fire " + fireStrength + ", readiness " + readiness + ", critical " + criticalHeat);
+
+            // успешно приготовили
+            if (readiness >= 1.0d)
+            {
+                StopCooking();
+            }
+
+            // пережарили — колобок вылетает в окно
+            if (criticalHeat >= 1.0d)
+            {
+                StopCooking();
+            }
         }
     }
 
