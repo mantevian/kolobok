@@ -1675,6 +1675,7 @@ MonoBehaviour:
   burnPerSecond: 0.015
   cooldownPerSecond: 0.003
   fireStrengthDisplay: {fileID: 0}
+  particlesObject: {fileID: 0}
   fireStrength: 0
   readiness: 0
   criticalHeat: 0
@@ -2370,7 +2371,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   burnPerSecond: 0.015
   cooldownPerSecond: 0.003
-  fireStrengthDisplay: {fileID: 0}
+  fireStrengthDisplay: {fileID: 1911972692}
+  particlesObject: {fileID: 960842399}
   fireStrength: 0
   readiness: 0
   criticalHeat: 0
@@ -3604,7 +3606,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.5, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.5, b: 0, a: 0.03529412}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10134,6 +10136,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1618069705564039550, guid: 6c3125d78b530434184e66a2609c0cea, type: 3}
+--- !u!1 &1911972692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8969571752666551113, guid: 657321a07c3561043af55547ec4b0ed7, type: 3}
+  m_PrefabInstance: {fileID: 763189322}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2013705867
 PrefabInstance:
   m_ObjectHideFlags: 0
