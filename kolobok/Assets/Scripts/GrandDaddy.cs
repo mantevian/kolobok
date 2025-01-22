@@ -83,7 +83,7 @@ public class GrandDaddy : MonoBehaviour
 			}
 		}
 
-		result.Add("Идеально!")
+		result.Add("Идеально!");
 
 		return result;
 	}
