@@ -26,7 +26,6 @@ public class GrandDaddy : MonoBehaviour
 		perfectIngredients[IngredientType.EGG] = UnityEngine.Random.Range(2, 5);
 		perfectIngredients[IngredientType.BUTTER] = UnityEngine.Random.Range(2, 5);
 		perfectIngredients[IngredientType.FLOUR] = UnityEngine.Random.Range(2, 5);
-		perfectIngredients[IngredientType.SOURCREAM] = UnityEngine.Random.Range(2, 5);
 	}
 
 	public int GetHealth()
@@ -63,15 +62,6 @@ public class GrandDaddy : MonoBehaviour
 		else if (ingredients[IngredientType.FLOUR] > perfectIngredients[IngredientType.FLOUR])
 		{
 			result.Add("Слишком много муки");
-		}
-
-		if (ingredients[IngredientType.SOURCREAM] < perfectIngredients[IngredientType.SOURCREAM])
-		{
-			result.Add("Недостаточно сметаны");
-		}
-		else if (ingredients[IngredientType.SOURCREAM] > perfectIngredients[IngredientType.SOURCREAM])
-		{
-			result.Add("Слишком много сметаны");
 		}
 
 		foreach (var item in perfectIngredients)

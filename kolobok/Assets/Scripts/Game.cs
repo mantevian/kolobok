@@ -15,9 +15,6 @@ public class Game : MonoBehaviour
     public GameObject flourPrefab;
 
     [SerializeField]
-    public GameObject sourCreamPrefab;
-
-    [SerializeField]
     public GameObject furnace;
 
     [SerializeField]
@@ -35,12 +32,10 @@ public class Game : MonoBehaviour
         ingredientPrefabs[IngredientType.EGG] = eggPrefab;
         ingredientPrefabs[IngredientType.BUTTER] = butterPrefab;
         ingredientPrefabs[IngredientType.FLOUR] = flourPrefab;
-        ingredientPrefabs[IngredientType.SOURCREAM] = sourCreamPrefab;
 
         ingredientCounts[IngredientType.EGG] = 0;
         ingredientCounts[IngredientType.BUTTER] = 0;
         ingredientCounts[IngredientType.FLOUR] = 0;
-        ingredientCounts[IngredientType.SOURCREAM] = 0;
     }
 
     void Update()
