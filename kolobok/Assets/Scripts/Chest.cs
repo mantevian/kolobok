@@ -13,7 +13,6 @@ public class Chest : MonoBehaviour
         defaultIngredients.Add(IngredientType.EGG, 2);
         defaultIngredients.Add(IngredientType.BUTTER, 4);
         defaultIngredients.Add(IngredientType.FLOUR, 6);
-        defaultIngredients.Add(IngredientType.SOURCREAM, 10);
     }
 
     void FixedUpdate()
