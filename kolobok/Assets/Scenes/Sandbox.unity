@@ -893,63 +893,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8424407269075466339, guid: d00295361f98ec84bba07dec38683d91, type: 3}
---- !u!1001 &161931665
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 927905479}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.99
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.24147588
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -13.58
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
-      propertyPath: m_Name
-      value: Stove (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8c86027b2095564499b5b778d51c70fa, type: 3}
 --- !u!1001 &223974226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2569,7 +2512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   burnPerSecond: 0.015
   cooldownPerSecond: 0.003
-  fireStrengthDisplay: {fileID: 1911972692}
+  fireStrengthDisplay: {fileID: 0}
   particlesObject1: {fileID: 960842399}
   particlesObject2: {fileID: 1455772234}
   pointLight: {fileID: 2120317054}
@@ -3771,7 +3714,6 @@ Transform:
   - {fileID: 1361717895}
   - {fileID: 594616926}
   - {fileID: 85132395}
-  - {fileID: 755988404}
   - {fileID: 788973342}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14952,7 +14894,6 @@ MonoBehaviour:
   eggPrefab: {fileID: 3257634926862635165, guid: a8245560dde275e4cae5b9b50d211bf4, type: 3}
   butterPrefab: {fileID: 3257634926862635165, guid: 1cb56bfe053aa90428c0f7bd26e65011, type: 3}
   flourPrefab: {fileID: 3257634926862635165, guid: c6dac3cefddd5ee439a49b17b78382db, type: 3}
-  sourCreamPrefab: {fileID: 3257634926862635165, guid: 267cd868fdbfa774a87648aacfc85eb7, type: 3}
   furnace: {fileID: 0}
   grandDaddy: {fileID: 0}
   gameState: 0
@@ -14993,6 +14934,7 @@ Transform:
   - {fileID: 1853170358}
   - {fileID: 1262342563}
   - {fileID: 38199169}
+  - {fileID: 652924506}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1739298416
