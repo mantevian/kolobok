@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
+    int time = 0;
+
     Dictionary<IngredientType, int> defaultIngredients = new();
 
     void Start()
@@ -16,7 +18,11 @@ public class Chest : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        time++;
+
+        if (time == 50) {
+            Open();
+        }
     }
 
     void Open()
