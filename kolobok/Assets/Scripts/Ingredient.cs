@@ -18,7 +18,7 @@ public class Ingredient : MonoBehaviour
 
     void OnTriggerEnter(Collider collider) {
         var game = transform.root.GetComponent<Game>();
-        if (!(game.gameState == GameState.SEARCHING_INGREDIENTS || game.gameState == GameState.PUTTING_ON_SHOVEL)) return;
+        if (!(game.gameState == GameState.SEARCHING_INGREDIENTS || game.gameState == GameState.PUTTING_ON_SHOVEL)) return; // TODO поменять второе состояние на mixing ingredients
 
         var bowlTrigger = collider.gameObject;
         var bowl = bowlTrigger.transform.parent.gameObject.GetComponent<Bowl>(); // Триггер чашки её наследник
