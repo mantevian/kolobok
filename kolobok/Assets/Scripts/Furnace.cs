@@ -101,6 +101,7 @@ public class Furnace : MonoBehaviour
     public void AddWood()
     {
         fireStrength += 0.15d;
+        Debug.LogWarning("Wood added");
     }
 
     public void StartCooking()
