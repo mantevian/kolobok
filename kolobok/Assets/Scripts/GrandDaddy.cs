@@ -2,14 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GrandDaddy : MonoBehaviour
 {
+	[SerializeField]
+	public GameObject speech;
+
+	[SerializeField]
+	public GameObject button;
+
+	[SerializeField]
+	public GameObject game;
+
 	public Dictionary<IngredientType, int> perfectIngredients = new();
-
-	private int health = 5;
-
-	public bool wellFed = false;
 
     void Start()
     {
@@ -28,14 +35,21 @@ public class GrandDaddy : MonoBehaviour
 		perfectIngredients[IngredientType.FLOUR] = UnityEngine.Random.Range(2, 5);
 	}
 
-	public int GetHealth()
-	{
-		return health;
+	public void Say(string text) {
+		speech.GetComponent<Text>().text = text;
 	}
 
-	public List<String> Eat(Dictionary<IngredientType, int> ingredients)
+	public void SetButtonActive(bool active) {
+		button.SetActive(active);
+	}
+
+	public bool Eat(Dictionary<IngredientType, int> ingredients)
 	{
-		var result = new List<String>();
+		SetButtonActive(true);
+
+		var result = new List<string>();
+
+		result.Add("Осталось попыток: " + GlobalData.attempts);
 
 		if (ingredients[IngredientType.EGG] < perfectIngredients[IngredientType.EGG])
 		{
@@ -64,17 +78,42 @@ public class GrandDaddy : MonoBehaviour
 			result.Add("Слишком много муки");
 		}
 
+		// Если есть хотя бы одна ошибка в ингредиентах, пишем результат. Если ошибок нет, цикл пройдёт полностью и в результат добавится "Идеально!"
 		foreach (var item in perfectIngredients)
 		{
 			if (perfectIngredients[item.Key] != ingredients[item.Key])
 			{
-				health--;
-				return result;
+				Say(string.Join(Environment.NewLine, result));
+				return false;
 			}
 		}
 
 		result.Add("Идеально!");
 
-		return result;
+		Say(string.Join(Environment.NewLine, result));
+
+		return true;
 	}
+
+	void OnTriggerEnter(Collider collider)
+    {
+		// Здесь надо вместо false проверить, это коллижн с колобком ли, и достать ингредиенты
+		/*
+        if (false)
+		{
+			Dictionary<IngredientType, int> ingredients = new();
+
+			bool success = Eat(ingredients);
+
+			if (success)
+			{
+				game.GetComponent<Game>().Win();
+			}
+			else
+			{
+				game.GetComponent<Game>().DecreaseAttempts();
+			}
+		}
+		*/
+    }
 }

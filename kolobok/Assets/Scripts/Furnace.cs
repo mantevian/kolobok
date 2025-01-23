@@ -82,7 +82,7 @@ public class Furnace : MonoBehaviour
             fireStrength = Math.Min(fireStrength, 1.0d);
             fireStrength = Math.Max(0.0d, fireStrength - cooldownPerSecond / 60d);
 
-            Debug.Log("fire " + fireStrength + ", readiness " + readiness + ", critical " + criticalHeat);
+            // Debug.Log("fire " + fireStrength + ", readiness " + readiness + ", critical " + criticalHeat);
 
             // успешно приготовили
             if (readiness >= 1.0d)

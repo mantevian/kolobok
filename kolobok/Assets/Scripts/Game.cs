@@ -18,7 +18,7 @@ public class Game : MonoBehaviour
     public GameObject furnace;
 
     [SerializeField]
-    public GameObject grandDaddy = null;
+    public GameObject grandDaddy;
     
     [SerializeField]
     public GameState gameState = GameState.SEARCHING_INGREDIENTS;
@@ -27,7 +27,7 @@ public class Game : MonoBehaviour
 
     public Dictionary<IngredientType, int> ingredientCounts = new();
 
-    void Start()
+    public void Start()
     {
         ingredientPrefabs[IngredientType.EGG] = eggPrefab;
         ingredientPrefabs[IngredientType.BUTTER] = butterPrefab;
@@ -36,6 +36,8 @@ public class Game : MonoBehaviour
         ingredientCounts[IngredientType.EGG] = 0;
         ingredientCounts[IngredientType.BUTTER] = 0;
         ingredientCounts[IngredientType.FLOUR] = 0;
+
+        grandDaddy.GetComponent<GrandDaddy>().SetButtonActive(false);
     }
 
     void Update()
@@ -45,30 +47,31 @@ public class Game : MonoBehaviour
 
     void FixedUpdate()
     {
-        // TODO UNCOMMENT WHEN GRANDDADDY IS ADDED!!!
-        /*
-        var dad = grandDaddy.GetComponent<GrandDaddy>();
 
-        if (dad.GetHealth() <= 0)
-        {
-            Lose();
-        }
-
-        if (dad.wellFed)
-        {
-            Win();
-        }
-        */
     }
 
     void Lose()
     {
-
+        // А тут чё делать?
     }
 
     void Win()
     {
+        // И тут чё делать?
+    }
 
+    public void DecreaseAttempts() {
+        GlobalData.attempts -= 1;
+    }
+
+    public void NextAttempt() {
+        if (GlobalData.attempts <= 0)
+        {
+            Lose();
+            return;
+        }
+
+        GetComponent<SceneResetter>().ResetScene();
     }
 
     public void AddIngredient(IngredientType ingredientType) {
