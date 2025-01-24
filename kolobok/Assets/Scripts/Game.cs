@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
@@ -19,6 +20,18 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     public GameObject grandDaddy;
+
+    [SerializeField]
+    public GameObject doorToHide;
+
+    [SerializeField]
+    public GameObject startGameButton;
+
+    [SerializeField]
+    public GameObject startGameText;
+
+    [SerializeField]
+    public GameObject chest;
     
     [SerializeField]
     public GameState gameState = GameState.SEARCHING_INGREDIENTS;
@@ -38,6 +51,14 @@ public class Game : MonoBehaviour
         ingredientCounts[IngredientType.FLOUR] = 0;
 
         grandDaddy.GetComponent<GrandDaddy>().SetButtonActive(false);
+    }
+
+    public void StartGame()
+    {
+        doorToHide.SetActive(false);
+        startGameButton.GetComponent<Button>().interactable = false;
+        startGameText.GetComponent<Text>().text = "Игра идёт!";
+        chest.GetComponent<Chest>().SpawnIngredients();
     }
 
     void Update()

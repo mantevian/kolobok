@@ -4,28 +4,14 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    int time = 0;
-
     Dictionary<IngredientType, int> defaultIngredients = new();
 
-    void Start()
+    public void SpawnIngredients()
     {
-        defaultIngredients.Add(IngredientType.EGG, 2);
-        defaultIngredients.Add(IngredientType.BUTTER, 4);
-        defaultIngredients.Add(IngredientType.FLOUR, 6);
-    }
+        defaultIngredients.Add(IngredientType.EGG, 5);
+        defaultIngredients.Add(IngredientType.BUTTER, 5);
+        defaultIngredients.Add(IngredientType.FLOUR, 5);
 
-    void FixedUpdate()
-    {
-        time++;
-
-        if (time == 50) {
-            Open();
-        }
-    }
-
-    void Open()
-    {
         var collider = GetComponent<BoxCollider>();
 
         foreach (var item in defaultIngredients)
@@ -41,14 +27,6 @@ public class Chest : MonoBehaviour
                     Random.Range(collider.center.z - collider.size.z * 0.3f, collider.center.z + collider.size.z * 0.3f)
                 ) + transform.position;
             }
-        }
-    }
-
-    void Close()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            Destroy(transform.GetChild(i).gameObject);
         }
     }
 }
