@@ -13,7 +13,7 @@ public class FurnaceTopka : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter(Collider other){
         if (!other.gameObject.CompareTag("Wood")) return;
-        Destroy(other.gameObject);
         transform.parent.GetComponent<Furnace>().AddWood();
+        Destroy(other.gameObject);
     }
 }
