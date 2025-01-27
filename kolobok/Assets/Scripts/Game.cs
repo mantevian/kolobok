@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,16 @@ public class Game : MonoBehaviour
     public GameObject startGameText;
 
     [SerializeField]
-    public GameObject chest;
+    public GameObject chestOpen;
+
+    [SerializeField]
+    public GameObject chestClosed;
+
+    [SerializeField]
+    public GameObject debugOutput;
+
+    [SerializeField]
+    public GameObject gameStateOutput;
     
     [SerializeField]
     public GameState gameState = GameState.SEARCHING_INGREDIENTS;
@@ -39,6 +49,8 @@ public class Game : MonoBehaviour
     public Dictionary<IngredientType, GameObject> ingredientPrefabs = new();
 
     public Dictionary<IngredientType, int> ingredientCounts = new();
+
+    public List<string> debugLines;
 
     public void Start()
     {
@@ -58,7 +70,21 @@ public class Game : MonoBehaviour
         doorToHide.SetActive(false);
         startGameButton.GetComponent<Button>().interactable = false;
         startGameText.GetComponent<Text>().text = "Игра идёт!";
-        chest.GetComponent<Chest>().SpawnIngredients();
+        
+        chestClosed.SetActive(false);
+        chestOpen.SetActive(true);
+    }
+
+    public void Log(string text)
+    {
+        Debug.Log(text);
+        debugLines.Add(text);
+        if (debugLines.Count > 7)
+        {
+            debugLines.RemoveAt(0);
+        }
+        string result = String.Join("\n", debugLines);
+        debugOutput.GetComponent<Text>().text = result;
     }
 
     void Update()
@@ -68,7 +94,7 @@ public class Game : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        gameStateOutput.GetComponent<Text>().text = gameState.ToString();
     }
 
     void Lose()
@@ -97,6 +123,6 @@ public class Game : MonoBehaviour
 
     public void AddIngredient(IngredientType ingredientType) {
         ingredientCounts[ingredientType] += 1;
-        Debug.Log("Game bowl ingredients" + string.Join(", ", ingredientCounts.Select(entry => $"{entry.Key}: {entry.Value}").ToArray()));
+        Log("Game bowl ingredients" + string.Join(", ", ingredientCounts.Select(entry => $"{entry.Key}: {entry.Value}").ToArray()));
     }
 }

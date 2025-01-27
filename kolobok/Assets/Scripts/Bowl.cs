@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Bowl : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject doughInBowl;
+
     void Start()
     {
-        
+        // doughInBowl.SetActive(false);
     }
 
     void Update()
@@ -28,5 +31,7 @@ public class Bowl : MonoBehaviour
         
         shovelTrigger.GetComponent<ShovelController>().putDough();
         game.gameState = GameState.PUTTING_IN_FURNACE;
+
+        // doughInBowl.SetActive(true);
     }
 }

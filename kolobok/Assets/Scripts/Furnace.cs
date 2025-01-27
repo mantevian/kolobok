@@ -38,11 +38,7 @@ public class Furnace : MonoBehaviour
 
     void Start()
     {
-        // TODO THIS IS DEBUG REMOVE LATER
-        // vvv
-        isCooking = true;
-        fireStrength = 0.5d;
-        // ^^^
+
     }
 
     void Update()
@@ -76,13 +72,13 @@ public class Furnace : MonoBehaviour
             }
             else
             {
-                criticalHeat -= 0.01d / 60d;
+                criticalHeat = Math.Max(0.0d, criticalHeat - 0.01d / 60d);
             }
 
             fireStrength = Math.Min(fireStrength, 1.0d);
             fireStrength = Math.Max(0.0d, fireStrength - cooldownPerSecond / 60d);
 
-            // Debug.Log("fire " + fireStrength + ", readiness " + readiness + ", critical " + criticalHeat);
+            transform.root.GetComponent<Game>().Log("fire " + fireStrength + ", readiness " + readiness + ", critical " + criticalHeat);
 
             // успешно приготовили
             if (readiness >= 1.0d)
@@ -96,23 +92,36 @@ public class Furnace : MonoBehaviour
                 StopCooking();
             }
         }
+        else
+        {
+            fireStrength = Math.Max(0.0d, fireStrength - cooldownPerSecond / 10d);
+            criticalHeat = Math.Max(0.0d, criticalHeat - 0.01d / 10d);
+        }
     }
 
     public void AddWood()
     {
-        fireStrength += 0.15d;
-        Debug.LogWarning("Wood added");
+        if (!isCooking)
+        {
+            StartCooking();
+        }
+
+        fireStrength += 0.18d;
     }
 
     public void StartCooking()
     {
-        readiness = 0.0d;
-        isCooking = true;
+        var game = transform.root.GetComponent<Game>();
+        if (game.gameState == GameState.CLOSING_FURNACE)
+        {
+            game.gameState = GameState.COOKING;
+            readiness = 0.0d;
+            isCooking = true;
+        }
     }
 
     public void StopCooking()
     {
-        readiness = 0.0d;
         isCooking = false;
     }
 

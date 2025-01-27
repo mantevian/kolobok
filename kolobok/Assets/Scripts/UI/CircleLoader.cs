@@ -33,6 +33,6 @@ public class CircleLoader : MonoBehaviour
 
     void Done()
     {
-        Debug.Log("Win!");
+        transform.root.GetComponent<Game>().Log("Win!");
     }
 }

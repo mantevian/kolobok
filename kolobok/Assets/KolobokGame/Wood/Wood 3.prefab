@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5216396473129352811}
   - component: {fileID: 3472875544880328938}
-  - component: {fileID: 3651320684045607048}
   - component: {fileID: 3852354240055442838}
   - component: {fileID: -2804256444900591380}
   - component: {fileID: 162250062298320929}
+  - component: {fileID: 8544659654953509564}
   m_Layer: 8
   m_Name: Wood 3
   m_TagString: Wood
@@ -45,18 +45,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611236659411978075}
   m_Mesh: {fileID: -8199591363545355373, guid: 3fe35cd8be32d4a4f89e7304efb31e3b, type: 3}
---- !u!114 &3651320684045607048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611236659411978075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a375bacd889b18489cd8ecc4e6dd592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &3852354240055442838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -258,6 +246,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3227662478725645272, guid: 3fe35cd8be32d4a4f89e7304efb31e3b, type: 3}
+--- !u!114 &8544659654953509564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611236659411978075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a375bacd889b18489cd8ecc4e6dd592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3346887018206257468
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class GrandDaddy : MonoBehaviour
 
     void Start()
     {
-        
+        Reset();
     }
 
     void FixedUpdate()
@@ -43,49 +43,49 @@ public class GrandDaddy : MonoBehaviour
 		button.SetActive(active);
 	}
 
+	public Dictionary<IngredientType, int> GetResults(Dictionary<IngredientType, int> ingredients)
+	{
+		var result = new Dictionary<IngredientType, int>();
+
+		result[IngredientType.EGG] = ingredients[IngredientType.EGG] - perfectIngredients[IngredientType.EGG];
+		result[IngredientType.BUTTER] = ingredients[IngredientType.BUTTER] - perfectIngredients[IngredientType.BUTTER];
+		result[IngredientType.FLOUR] = ingredients[IngredientType.FLOUR] - perfectIngredients[IngredientType.FLOUR];
+
+		return result;
+	}
+
 	public bool Eat(Dictionary<IngredientType, int> ingredients)
 	{
 		SetButtonActive(true);
 
 		var result = new List<string>();
 
+		var numberedResults = GetResults(ingredients);
+
 		result.Add("Осталось попыток: " + GlobalData.attempts);
 
-		if (ingredients[IngredientType.EGG] < perfectIngredients[IngredientType.EGG])
+		switch (numberedResults[IngredientType.EGG])
 		{
-			result.Add("Недостаточно яиц");
-		}
-		else if (ingredients[IngredientType.EGG] > perfectIngredients[IngredientType.EGG])
-		{
-			result.Add("Слишком много яиц");
+			case -1: result.Add("Недостаточно яиц"); break;
+			case 1: result.Add("Слишком много яиц"); break;
 		}
 
-		if (ingredients[IngredientType.BUTTER] < perfectIngredients[IngredientType.BUTTER])
+		switch (numberedResults[IngredientType.BUTTER])
 		{
-			result.Add("Недостаточно масла");
-		}
-		else if (ingredients[IngredientType.BUTTER] > perfectIngredients[IngredientType.BUTTER])
-		{
-			result.Add("Слишком много масла");
+			case -1: result.Add("Недостаточно масла"); break;
+			case 1: result.Add("Слишком много масла"); break;
 		}
 
-		if (ingredients[IngredientType.FLOUR] < perfectIngredients[IngredientType.FLOUR])
+		switch (numberedResults[IngredientType.FLOUR])
 		{
-			result.Add("Недостаточно муки");
-		}
-		else if (ingredients[IngredientType.FLOUR] > perfectIngredients[IngredientType.FLOUR])
-		{
-			result.Add("Слишком много муки");
+			case -1: result.Add("Недостаточно муки"); break;
+			case 1: result.Add("Слишком много муки"); break;
 		}
 
-		// Если есть хотя бы одна ошибка в ингредиентах, пишем результат. Если ошибок нет, цикл пройдёт полностью и в результат добавится "Идеально!"
-		foreach (var item in perfectIngredients)
+		if (numberedResults[IngredientType.EGG] == 0 && numberedResults[IngredientType.BUTTER] == 0 && numberedResults[IngredientType.FLOUR] == 0)
 		{
-			if (perfectIngredients[item.Key] != ingredients[item.Key])
-			{
-				Say(string.Join(Environment.NewLine, result));
-				return false;
-			}
+			Say(string.Join(Environment.NewLine, result));
+			return false;
 		}
 
 		result.Add("Идеально!");
