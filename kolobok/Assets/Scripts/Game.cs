@@ -52,6 +52,8 @@ public class Game : MonoBehaviour
 
     public List<string> debugLines;
 
+    private int eatingTime;
+
     public void Start()
     {
         ingredientPrefabs[IngredientType.EGG] = eggPrefab;
@@ -73,6 +75,8 @@ public class Game : MonoBehaviour
         
         chestClosed.SetActive(false);
         chestOpen.SetActive(true);
+
+        eatingTime = 100;
     }
 
     public void Log(string text)
@@ -95,6 +99,30 @@ public class Game : MonoBehaviour
     void FixedUpdate()
     {
         gameStateOutput.GetComponent<Text>().text = gameState.ToString();
+
+        var dadComponent = grandDaddy.GetComponent<GrandDaddy>();
+
+        switch (gameState) {
+            case GameState.FEEDING:
+                if (eatingTime > -1) {
+                    eatingTime--;
+                }
+
+                if (eatingTime == 0) {
+                    bool success = dadComponent.Eat(ingredientCounts);
+
+                    if (success)
+                    {
+                        Win();
+                    }
+                    else
+                    {
+                        DecreaseAttempts();
+                        dadComponent.SetButtonActive(true);
+                    }
+                }
+            break;
+        }
     }
 
     void Lose()
@@ -119,6 +147,7 @@ public class Game : MonoBehaviour
         }
 
         GetComponent<SceneResetter>().ResetScene();
+        StartGame();
     }
 
     public void AddIngredient(IngredientType ingredientType) {

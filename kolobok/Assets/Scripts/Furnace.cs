@@ -18,10 +18,7 @@ public class Furnace : MonoBehaviour
     public GameObject fireStrengthDisplay;
 
     [SerializeField]
-    public GameObject particlesObject1;
-
-    [SerializeField]
-    public GameObject particlesObject2;
+    public GameObject particlesObject;
 
     [SerializeField]
     public GameObject pointLight;
@@ -43,12 +40,8 @@ public class Furnace : MonoBehaviour
 
     void Update()
     {
-        var particles1 = particlesObject1.GetComponent<ParticleSystem>();
-        var m1 = particles1.main;
-        m1.startColor = new Color(1.0f, 0.5f, 0.0f, (float)fireStrength);
-
-        var particles2 = particlesObject2.GetComponent<ParticleSystem>();
-        var m2 = particles2.main;
+        var particles = particlesObject.GetComponent<ParticleSystem>();
+        var m2 = particles.main;
         m2.startColor = new Color(1.0f, 0.5f, 0.0f, (float)fireStrength);
 
         var light = pointLight.GetComponent<Light>();

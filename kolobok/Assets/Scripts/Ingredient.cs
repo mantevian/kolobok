@@ -23,8 +23,8 @@ public class Ingredient : MonoBehaviour
         if (bowl == null) return;
 
         game.AddIngredient(type);
+        bowl.doughInBowl.SetActive(true);
         game.gameState = GameState.PUTTING_ON_SHOVEL;
         Destroy(gameObject);
-
     }
 }

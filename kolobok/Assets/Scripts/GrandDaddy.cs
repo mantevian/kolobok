@@ -16,6 +16,9 @@ public class GrandDaddy : MonoBehaviour
 	[SerializeField]
 	public GameObject game;
 
+	[SerializeField]
+	public GameObject furnace;
+
 	public Dictionary<IngredientType, int> perfectIngredients = new();
 
     void Start()
@@ -30,9 +33,9 @@ public class GrandDaddy : MonoBehaviour
 
 	public void Reset()
 	{
-		perfectIngredients[IngredientType.EGG] = UnityEngine.Random.Range(2, 5);
-		perfectIngredients[IngredientType.BUTTER] = UnityEngine.Random.Range(2, 5);
-		perfectIngredients[IngredientType.FLOUR] = UnityEngine.Random.Range(2, 5);
+		perfectIngredients[IngredientType.EGG] = UnityEngine.Random.Range(2, 4);
+		perfectIngredients[IngredientType.BUTTER] = UnityEngine.Random.Range(2, 4);
+		perfectIngredients[IngredientType.FLOUR] = UnityEngine.Random.Range(2, 4);
 	}
 
 	public void Say(string text) {
@@ -56,34 +59,33 @@ public class GrandDaddy : MonoBehaviour
 
 	public bool Eat(Dictionary<IngredientType, int> ingredients)
 	{
-		SetButtonActive(true);
-
 		var result = new List<string>();
 
 		var numberedResults = GetResults(ingredients);
 
-		result.Add("Осталось попыток: " + GlobalData.attempts);
+		var furn = furnace.GetComponent<Furnace>();
 
-		switch (numberedResults[IngredientType.EGG])
-		{
-			case -1: result.Add("Недостаточно яиц"); break;
-			case 1: result.Add("Слишком много яиц"); break;
-		}
+		if (furn.readiness < 0.8d) result.Add("Колобок слишком сырой");
+		if (furn.readiness > 1.2d) result.Add("Колобок пережаренный");
 
-		switch (numberedResults[IngredientType.BUTTER])
-		{
-			case -1: result.Add("Недостаточно масла"); break;
-			case 1: result.Add("Слишком много масла"); break;
-		}
+		if (numberedResults[IngredientType.EGG] < 0) result.Add("Недостаточно яиц");
+		if (numberedResults[IngredientType.EGG] > 0) result.Add("Слишком много яиц");
+		
+		if (numberedResults[IngredientType.BUTTER] < 0) result.Add("Недостаточно масла");
+		if (numberedResults[IngredientType.BUTTER] > 0) result.Add("Слишком много масла");
 
-		switch (numberedResults[IngredientType.FLOUR])
-		{
-			case -1: result.Add("Недостаточно муки"); break;
-			case 1: result.Add("Слишком много муки"); break;
-		}
+		if (numberedResults[IngredientType.FLOUR] < 0) result.Add("Недостаточно муки");
+		if (numberedResults[IngredientType.FLOUR] > 0) result.Add("Слишком много муки");
 
-		if (numberedResults[IngredientType.EGG] == 0 && numberedResults[IngredientType.BUTTER] == 0 && numberedResults[IngredientType.FLOUR] == 0)
+		if (
+				numberedResults[IngredientType.EGG] != 0
+				|| numberedResults[IngredientType.BUTTER] != 0
+				|| numberedResults[IngredientType.FLOUR] != 0
+				|| furn.readiness < 0.8d
+				|| furn.readiness > 1.2d
+			)
 		{
+			result.Add("Осталось попыток: " + (GlobalData.attempts - 1));
 			Say(string.Join(Environment.NewLine, result));
 			return false;
 		}
@@ -94,26 +96,4 @@ public class GrandDaddy : MonoBehaviour
 
 		return true;
 	}
-
-	void OnTriggerEnter(Collider collider)
-    {
-		// Здесь надо вместо false проверить, это коллижн с колобком ли, и достать ингредиенты
-		/*
-        if (false)
-		{
-			Dictionary<IngredientType, int> ingredients = new();
-
-			bool success = Eat(ingredients);
-
-			if (success)
-			{
-				game.GetComponent<Game>().Win();
-			}
-			else
-			{
-				game.GetComponent<Game>().DecreaseAttempts();
-			}
-		}
-		*/
-    }
 }

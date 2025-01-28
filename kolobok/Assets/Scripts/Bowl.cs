@@ -10,15 +10,17 @@ public class Bowl : MonoBehaviour
 
     void Start()
     {
-        // doughInBowl.SetActive(false);
+        doughInBowl.SetActive(false);
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        var game = transform.root.GetComponent<Game>();
+        int count = game.ingredientCounts[IngredientType.EGG] + game.ingredientCounts[IngredientType.BUTTER] + game.ingredientCounts[IngredientType.FLOUR];
+        doughInBowl.transform.localPosition = new Vector3(0.0f, 0.0f, 0.008f * count);
     }
 
-    void OnTriggerEnter(Collider collider) {
+    void OnTriggerStay(Collider collider) {
         var game = transform.root.GetComponent<Game>();
         var shovelTrigger = collider.gameObject;
 
@@ -31,7 +33,5 @@ public class Bowl : MonoBehaviour
         
         shovelTrigger.GetComponent<ShovelController>().putDough();
         game.gameState = GameState.PUTTING_IN_FURNACE;
-
-        // doughInBowl.SetActive(true);
     }
 }
