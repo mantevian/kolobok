@@ -58,7 +58,8 @@ public class KolobokController : MonoBehaviour
     void Update()
     {
         var game = transform.root.GetComponent<Game>();
-        Color newColor = Color.Lerp(Color.white, new Color(1.0f, 1.0f, 0.0f), (float)(game.furnace.GetComponent<Furnace>().readiness));
-        renderer.material.color = newColor;
+        var furn = game.furnace.GetComponent<Furnace>();
+        Color readyColor = Color.Lerp(Color.white, new Color(1.0f, 1.0f, 0.0f), (float)(furn.readiness));
+        renderer.material.color = Color.Lerp(readyColor, Color.black, (float)(furn.maxCriticalHeat) * 0.5f);
     }
 }

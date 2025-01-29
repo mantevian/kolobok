@@ -24,6 +24,9 @@ public class Furnace : MonoBehaviour
     public GameObject particlesObject;
 
     [SerializeField]
+    public GameObject smokeParticles;
+
+    [SerializeField]
     public GameObject pointLight;
 
     public double fireStrength = 0.0d;
@@ -31,6 +34,8 @@ public class Furnace : MonoBehaviour
     public double readiness = 0.0d;
 
     public double criticalHeat = 0.0d;
+
+    public double maxCriticalHeat = 0.0d;
 
     private bool isCooking = false;
 
@@ -69,6 +74,8 @@ public class Furnace : MonoBehaviour
     {
         if (isCooking)
         {
+            maxCriticalHeat = Math.Max(maxCriticalHeat, criticalHeat);
+
             // если сила меньше 0.3, готовность будет уменьшаться
             readiness += (fireStrength - 0.3d) * burnPerSecond / 60d;
             readiness = Math.Max(readiness, 0.0d);
@@ -107,6 +114,7 @@ public class Furnace : MonoBehaviour
             // пережарили — колобок вылетает в окно
             if (criticalHeat >= 1.5d)
             {
+                smokeParticles.GetComponent<ParticleSystem>().Play();
                 transform.root.Find("Sound").Find("Explode").gameObject.GetComponent<AudioSource>().Play();
                 StopCooking();
                 // transform.Find("Container").Find("Kolobok").gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, -1.0f, 0.0f), ForceMode.Impulse);

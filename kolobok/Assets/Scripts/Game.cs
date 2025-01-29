@@ -79,6 +79,8 @@ public class Game : MonoBehaviour
         eatingTime = 300;
 
         transform.Find("Sound").Find("StartGame").gameObject.GetComponent<AudioSource>().Play();
+
+        Log("egg " + GlobalData.perfectIngredients[IngredientType.EGG].ToString() + " butter" + GlobalData.perfectIngredients[IngredientType.BUTTER].ToString() + " flour " + GlobalData.perfectIngredients[IngredientType.FLOUR].ToString());
     }
 
     public void Log(string text)
