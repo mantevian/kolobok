@@ -18,6 +18,9 @@ public class Furnace : MonoBehaviour
     public GameObject fireStrengthDisplay;
 
     [SerializeField]
+    public GameObject readyDisplay;
+
+    [SerializeField]
     public GameObject particlesObject;
 
     [SerializeField]
@@ -47,7 +50,19 @@ public class Furnace : MonoBehaviour
         var light = pointLight.GetComponent<Light>();
         light.intensity = 5.0f * (float)fireStrength;
 
-        fireStrengthDisplay.GetComponent<Slider>().value = (float)fireStrength;
+        readyDisplay.GetComponent<Slider>().value = (float)readiness;
+
+        var fireSlider = fireStrengthDisplay.GetComponent<Slider>();
+        fireSlider.value = (float)fireStrength;
+
+        ColorBlock colors = fireSlider.colors;
+        Color c = new Color(0.5f + 0.5f * (float)criticalHeat, 0.5f - 0.5f * (float)criticalHeat, 0.1f);
+        colors.normalColor = c;
+        colors.highlightedColor = c;
+        colors.selectedColor = c;
+        colors.pressedColor = c;
+
+        fireSlider.colors = colors;
     }
 
     void FixedUpdate()
@@ -58,10 +73,10 @@ public class Furnace : MonoBehaviour
             readiness += (fireStrength - 0.3d) * burnPerSecond / 60d;
             readiness = Math.Max(readiness, 0.0d);
 
-            // если сила больше 0.7, "критическая шкала" будет увеличиваться
-            if (fireStrength > 0.7d)
+            // если сила больше 0.75, "критическая шкала" будет увеличиваться
+            if (fireStrength > 0.75d)
             {
-                criticalHeat += 0.02d / 60d;
+                criticalHeat += 0.01d / 60d;
             }
             else
             {
@@ -83,6 +98,7 @@ public class Furnace : MonoBehaviour
             if (criticalHeat >= 1.0d)
             {
                 StopCooking();
+                transform.Find("Container").Find("Kolobok").gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, -1.0f, 0.0f), ForceMode.Impulse);
             }
         }
         else

@@ -12,6 +12,8 @@ public class FurnaceContainer : MonoBehaviour
     {
         var game = transform.root.GetComponent<Game>();
 
+        var furnace = transform.parent.GetComponent<Furnace>();
+
         var shovel = other.gameObject.transform.parent;
         if (shovel.name == "Shovel")
         {
@@ -62,6 +64,8 @@ public class FurnaceContainer : MonoBehaviour
                     kolobok.SetParent(shovelContainer);
 
                     game.gameState = GameState.GIVING_TO_GRANDPA;
+
+                    furnace.StopCooking();
 
                     // Calculate the new local scale to maintain the same world scale
                     newLocalScale = new Vector3(
