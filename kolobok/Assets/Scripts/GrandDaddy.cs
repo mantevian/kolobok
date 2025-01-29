@@ -19,11 +19,15 @@ public class GrandDaddy : MonoBehaviour
 	[SerializeField]
 	public GameObject furnace;
 
-	public Dictionary<IngredientType, int> perfectIngredients = new();
+	public Animator animator;
+
+	
 
     void Start()
     {
         Reset();
+
+		animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -33,9 +37,7 @@ public class GrandDaddy : MonoBehaviour
 
 	public void Reset()
 	{
-		perfectIngredients[IngredientType.EGG] = UnityEngine.Random.Range(2, 4);
-		perfectIngredients[IngredientType.BUTTER] = UnityEngine.Random.Range(2, 4);
-		perfectIngredients[IngredientType.FLOUR] = UnityEngine.Random.Range(2, 4);
+		
 	}
 
 	public void Say(string text) {
@@ -50,9 +52,9 @@ public class GrandDaddy : MonoBehaviour
 	{
 		var result = new Dictionary<IngredientType, int>();
 
-		result[IngredientType.EGG] = ingredients[IngredientType.EGG] - perfectIngredients[IngredientType.EGG];
-		result[IngredientType.BUTTER] = ingredients[IngredientType.BUTTER] - perfectIngredients[IngredientType.BUTTER];
-		result[IngredientType.FLOUR] = ingredients[IngredientType.FLOUR] - perfectIngredients[IngredientType.FLOUR];
+		result[IngredientType.EGG] = ingredients[IngredientType.EGG] - GlobalData.perfectIngredients[IngredientType.EGG];
+		result[IngredientType.BUTTER] = ingredients[IngredientType.BUTTER] - GlobalData.perfectIngredients[IngredientType.BUTTER];
+		result[IngredientType.FLOUR] = ingredients[IngredientType.FLOUR] - GlobalData.perfectIngredients[IngredientType.FLOUR];
 
 		return result;
 	}

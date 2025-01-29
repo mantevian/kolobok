@@ -33,5 +33,6 @@ public class Bowl : MonoBehaviour
         
         shovelTrigger.GetComponent<ShovelController>().putDough();
         game.gameState = GameState.PUTTING_IN_FURNACE;
+        doughInBowl.SetActive(false);
     }
 }

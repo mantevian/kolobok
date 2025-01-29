@@ -73,8 +73,12 @@ public class Furnace : MonoBehaviour
             readiness += (fireStrength - 0.3d) * burnPerSecond / 60d;
             readiness = Math.Max(readiness, 0.0d);
 
-            // если сила больше 0.75, "критическая шкала" будет увеличиваться
-            if (fireStrength > 0.75d)
+            // если сила больше 0.7, "критическая шкала" будет увеличиваться
+            if (fireStrength > 0.95d)
+            {
+                criticalHeat += 0.03d / 60d;
+            }
+            else if (fireStrength > 0.7d)
             {
                 criticalHeat += 0.01d / 60d;
             }
@@ -83,22 +87,29 @@ public class Furnace : MonoBehaviour
                 criticalHeat = Math.Max(0.0d, criticalHeat - 0.01d / 60d);
             }
 
-            fireStrength = Math.Min(fireStrength, 1.0d);
+            fireStrength = Math.Min(fireStrength, 1.1d);
             fireStrength = Math.Max(0.0d, fireStrength - cooldownPerSecond / 60d);
 
             transform.root.GetComponent<Game>().Log("fire " + fireStrength + ", readiness " + readiness + ", critical " + criticalHeat);
 
-            // успешно приготовили
-            if (readiness >= 1.0d)
+            // перегрели, чтобы не бесконечно печка топилась
+            if (readiness >= 1.5d)
             {
                 StopCooking();
             }
 
-            // пережарили — колобок вылетает в окно
             if (criticalHeat >= 1.0d)
             {
+                criticalHeat += 0.01d;
+                readiness += 0.01d;
+            }
+
+            // пережарили — колобок вылетает в окно
+            if (criticalHeat >= 1.5d)
+            {
+                transform.root.Find("Sound").Find("Explode").gameObject.GetComponent<AudioSource>().Play();
                 StopCooking();
-                transform.Find("Container").Find("Kolobok").gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, -1.0f, 0.0f), ForceMode.Impulse);
+                // transform.Find("Container").Find("Kolobok").gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, -1.0f, 0.0f), ForceMode.Impulse);
             }
         }
         else
@@ -116,6 +127,7 @@ public class Furnace : MonoBehaviour
         }
 
         fireStrength += 0.18d;
+        transform.root.Find("Sound").Find("Ignite").gameObject.GetComponent<AudioSource>().Play();
     }
 
     public void StartCooking()
@@ -126,12 +138,16 @@ public class Furnace : MonoBehaviour
             game.gameState = GameState.COOKING;
             readiness = 0.0d;
             isCooking = true;
+
+            transform.root.Find("Sound").Find("FireAmbient").gameObject.GetComponent<AudioSource>().Play();
         }
     }
 
     public void StopCooking()
     {
         isCooking = false;
+
+        transform.root.Find("Sound").Find("FireAmbient").gameObject.GetComponent<AudioSource>().Stop();
     }
 
     void OnTriggerEnter(Collider collider)

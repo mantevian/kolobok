@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class KolobokController : MonoBehaviour
 {
-
-
     [SerializeField]
     Mesh LessMesh;
     
@@ -15,10 +13,13 @@ public class KolobokController : MonoBehaviour
     [SerializeField]
     Mesh MoreMesh;
 
+    private MeshRenderer renderer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        renderer = GetComponent<MeshRenderer>();
+        renderer.material = new Material(renderer.material);
     }
 
     public void Init(int flour, int egg, int butter) // Меньше нуля -- мало, ноль -- равно, больше нуля -- много
@@ -56,6 +57,8 @@ public class KolobokController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        var game = transform.root.GetComponent<Game>();
+        Color newColor = Color.Lerp(Color.white, new Color(1.0f, 1.0f, 0.0f), (float)(game.furnace.GetComponent<Furnace>().readiness));
+        renderer.material.color = newColor;
     }
 }

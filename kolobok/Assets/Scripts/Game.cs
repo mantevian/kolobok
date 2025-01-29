@@ -76,7 +76,9 @@ public class Game : MonoBehaviour
         chestClosed.SetActive(false);
         chestOpen.SetActive(true);
 
-        eatingTime = 100;
+        eatingTime = 300;
+
+        transform.Find("Sound").Find("StartGame").gameObject.GetComponent<AudioSource>().Play();
     }
 
     public void Log(string text)
@@ -105,6 +107,7 @@ public class Game : MonoBehaviour
         switch (gameState) {
             case GameState.FEEDING:
                 if (eatingTime > -1) {
+                    dadComponent.animator.SetTrigger("Eating");
                     eatingTime--;
                 }
 
@@ -117,6 +120,8 @@ public class Game : MonoBehaviour
                     }
                     else
                     {
+                        dadComponent.animator.SetTrigger("Angry");
+                        transform.Find("Sound").Find("Angry").gameObject.GetComponent<AudioSource>().Play();
                         DecreaseAttempts();
                         dadComponent.SetButtonActive(true);
                     }
@@ -127,12 +132,20 @@ public class Game : MonoBehaviour
 
     void Lose()
     {
-        // А тут чё делать?
+        var dadComponent = grandDaddy.GetComponent<GrandDaddy>();
+        dadComponent.Say("Попытки закончились. Прощайте.");
+        transform.Find("Sound").Find("Death").gameObject.GetComponent<AudioSource>().Play();
+        transform.Find("Sound").Find("Lose").gameObject.GetComponent<AudioSource>().Play();
+        dadComponent.animator.SetTrigger("Death");
     }
 
     void Win()
     {
-        // И тут чё делать?
+        var dadComponent = grandDaddy.GetComponent<GrandDaddy>();
+        dadComponent.Say("Спасибо! Я сыт и доволен.");
+        transform.Find("Sound").Find("Laugh").gameObject.GetComponent<AudioSource>().Play();
+        transform.Find("Sound").Find("Victory").gameObject.GetComponent<AudioSource>().Play();
+        dadComponent.animator.SetTrigger("Happy");
     }
 
     public void DecreaseAttempts() {
@@ -152,6 +165,7 @@ public class Game : MonoBehaviour
 
     public void AddIngredient(IngredientType ingredientType) {
         ingredientCounts[ingredientType] += 1;
-        Log("Game bowl ingredients" + string.Join(", ", ingredientCounts.Select(entry => $"{entry.Key}: {entry.Value}").ToArray()));
+        transform.Find("Sound").Find("AddIngredient").gameObject.GetComponent<AudioSource>().Play();
+        // Log("Game bowl ingredients" + string.Join(", ", ingredientCounts.Select(entry => $"{entry.Key}: {entry.Value}").ToArray()));
     }
 }
