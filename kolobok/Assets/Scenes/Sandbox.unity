@@ -290,7 +290,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8937983931152356328, guid: 06ca89c305ee4654fa596933cb5028be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 751290275}
   m_SourcePrefab: {fileID: 100100000, guid: 06ca89c305ee4654fa596933cb5028be, type: 3}
 --- !u!4 &30834201 stripped
 Transform:
@@ -3038,7 +3041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6684778209841772841, guid: 7fcc104f7687b54499124e3a2deb4ace, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6958709096508652210, guid: 7fcc104f7687b54499124e3a2deb4ace, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5130,6 +5133,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1735179782}
   m_LocalEulerAnglesHint: {x: 50, y: -153.793, z: 0}
+--- !u!1 &751290270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8937983931152356328, guid: 06ca89c305ee4654fa596933cb5028be, type: 3}
+  m_PrefabInstance: {fileID: 30834200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &751290275
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751290270}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &763189322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7003,6 +7038,11 @@ PrefabInstance:
 --- !u!224 &986887754 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8969571752666551114, guid: 657321a07c3561043af55547ec4b0ed7, type: 3}
+  m_PrefabInstance: {fileID: 986887753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &986887755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8969571752666551113, guid: 657321a07c3561043af55547ec4b0ed7, type: 3}
   m_PrefabInstance: {fileID: 986887753}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &999855808
@@ -9946,7 +9986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6684778209841772841, guid: 7fcc104f7687b54499124e3a2deb4ace, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6958709096508652210, guid: 7fcc104f7687b54499124e3a2deb4ace, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13901,6 +13941,10 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.g
       value: 0.3774138
       objectReference: {fileID: 0}
+    - target: {fileID: 8755361849617443755, guid: 56ff31728e62fe848b0c543d458dfdf8, type: 3}
+      propertyPath: readyDisplay
+      value: 
+      objectReference: {fileID: 986887755}
     - target: {fileID: 8755361849617443755, guid: 56ff31728e62fe848b0c543d458dfdf8, type: 3}
       propertyPath: particlesObject
       value: 
