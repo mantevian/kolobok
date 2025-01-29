@@ -12305,7 +12305,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: d3c43b810b117f644808442aac0e9a6a, type: 2}
     - target: {fileID: 5866666021909216657, guid: bdf09e3b2473f0b4db49db3bfabb920a, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6386480451222621022, guid: bdf09e3b2473f0b4db49db3bfabb920a, type: 3}
       propertyPath: m_StaticEditorFlags
