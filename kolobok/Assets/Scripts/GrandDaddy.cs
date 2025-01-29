@@ -67,8 +67,8 @@ public class GrandDaddy : MonoBehaviour
 
 		var furn = furnace.GetComponent<Furnace>();
 
-		if (furn.readiness < 0.8d) result.Add("Колобок слишком сырой");
-		if (furn.readiness > 1.2d) result.Add("Колобок пережаренный");
+		if (furn.readiness < 0.85d) result.Add("Колобок слишком сырой");
+		if (furn.readiness > 1.15d) result.Add("Колобок пережаренный");
 
 		if (numberedResults[IngredientType.EGG] < 0) result.Add("Недостаточно яиц");
 		if (numberedResults[IngredientType.EGG] > 0) result.Add("Слишком много яиц");

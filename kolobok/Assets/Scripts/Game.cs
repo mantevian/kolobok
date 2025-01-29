@@ -65,6 +65,11 @@ public class Game : MonoBehaviour
         ingredientCounts[IngredientType.FLOUR] = 0;
 
         grandDaddy.GetComponent<GrandDaddy>().SetButtonActive(false);
+
+        if (GlobalData.autostart)
+        {
+            StartGame();
+        }
     }
 
     public void StartGame()
@@ -76,7 +81,7 @@ public class Game : MonoBehaviour
         chestClosed.SetActive(false);
         chestOpen.SetActive(true);
 
-        eatingTime = 300;
+        eatingTime = 400;
 
         transform.Find("Sound").Find("StartGame").gameObject.GetComponent<AudioSource>().Play();
 
@@ -109,8 +114,12 @@ public class Game : MonoBehaviour
         switch (gameState) {
             case GameState.FEEDING:
                 if (eatingTime > -1) {
-                    dadComponent.animator.SetTrigger("Eating");
                     eatingTime--;
+                }
+
+                if (eatingTime == 399)
+                {
+                    dadComponent.animator.SetTrigger("Eating");
                 }
 
                 if (eatingTime == 0) {
@@ -122,9 +131,16 @@ public class Game : MonoBehaviour
                     }
                     else
                     {
-                        dadComponent.animator.SetTrigger("Angry");
                         transform.Find("Sound").Find("Angry").gameObject.GetComponent<AudioSource>().Play();
                         DecreaseAttempts();
+                        if (GlobalData.attempts > 0)
+                        {
+                            dadComponent.animator.SetTrigger("Angry");
+                        }
+                        else
+                        {
+                            dadComponent.animator.SetTrigger("Death");
+                        }
                         dadComponent.SetButtonActive(true);
                     }
                 }
@@ -138,7 +154,6 @@ public class Game : MonoBehaviour
         dadComponent.Say("Попытки закончились. Прощайте.");
         transform.Find("Sound").Find("Death").gameObject.GetComponent<AudioSource>().Play();
         transform.Find("Sound").Find("Lose").gameObject.GetComponent<AudioSource>().Play();
-        dadComponent.animator.SetTrigger("Death");
     }
 
     void Win()
@@ -154,15 +169,31 @@ public class Game : MonoBehaviour
         GlobalData.attempts -= 1;
     }
 
-    public void NextAttempt() {
-        if (GlobalData.attempts <= 0)
+    public void NextAttempt()
+    {
+        var dadComponent = grandDaddy.GetComponent<GrandDaddy>();
+
+        if (GlobalData.gonnaReset)
         {
-            Lose();
+            HardReset();
             return;
         }
 
+        if (GlobalData.attempts <= 0)
+        {
+            Lose();
+            GlobalData.gonnaReset = true;
+            return;
+        }
+
+        GlobalData.autostart = true;
         GetComponent<SceneResetter>().ResetScene();
-        StartGame();
+    }
+
+    public void HardReset()
+    {
+        GlobalData.Reset();
+        GetComponent<SceneResetter>().ResetScene();
     }
 
     public void AddIngredient(IngredientType ingredientType) {

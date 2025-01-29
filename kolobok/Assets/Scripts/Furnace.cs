@@ -77,7 +77,7 @@ public class Furnace : MonoBehaviour
             maxCriticalHeat = Math.Max(maxCriticalHeat, criticalHeat);
 
             // если сила меньше 0.3, готовность будет уменьшаться
-            readiness += (fireStrength - 0.3d) * burnPerSecond / 60d;
+            readiness += (fireStrength - 0.2d) * burnPerSecond / 35d;
             readiness = Math.Max(readiness, 0.0d);
 
             // если сила больше 0.7, "критическая шкала" будет увеличиваться
